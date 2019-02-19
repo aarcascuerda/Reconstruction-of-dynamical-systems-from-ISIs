@@ -27,3 +27,4 @@ class TrajectoryWriter:
     def solution(self):
         return solve_ivp(getattr(functions, self.function_name), self.time_interval, self.initial_conditions)
 
+    
