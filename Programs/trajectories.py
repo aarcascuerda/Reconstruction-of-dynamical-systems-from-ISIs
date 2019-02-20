@@ -40,12 +40,13 @@ class TrajectoryCalcul:
         )
 
 class TrajectoryWriter:
-    traj = TrajectoryCalcul()
-    dir_name = traj.function_name
-    solution = traj.solution()
-    y = solution
 
-    file_name = str(traj.time_interval[0])+'_'+str(traj.time_interval[1])+'_'+str(traj.dt)
+    def __init__(self):
+        self.traj = TrajectoryCalcul()
+        self.dir_name = self.traj.function_name
+        self.solution = self.traj.solution()
+        self.y = self.solution
+        self.file_name = str(self.traj.time_interval[0])+'_'+str(self.traj.time_interval[1])+'_'+str(self.traj.dt)
 
     with open('data/{}/{}.dat'.format(dir_name,file_name), 'w') as file_obj:
         for i in range(len(y)):

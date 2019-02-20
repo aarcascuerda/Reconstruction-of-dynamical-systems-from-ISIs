@@ -20,10 +20,11 @@ def extract_spikes(s,theta,dt,tmax):
 def signal(x):
     s=[(i+2)**2 for i in x]
     return s
-                
-def read_x(texto):
+
+def read_x(equation='lorentz',initial_time=0.0,last_time=50.0,dt=0.001):
     x,y,z=[],[],[]
-    with open() as f:
+    file_name = '{}_{}_{}'.format(initial_time,last_time,dt)
+    with open('data/{}/{}.dat'.format(equation,file_name), 'r') as f:
         for linea in f:
             value = linea.split(" ")
             value[2].split("/n")
