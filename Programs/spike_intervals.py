@@ -1,22 +1,30 @@
 import numpy as np
 
-def extract_spikes(s,theta,dt,tmax):
+def extract_spikes(s,theta,t0=0.0,tmax=50.0,dt=0.001):
     Ti=[]
-    t=0.
-    
-    for i in range(len(s)):
+    t=t0
+
+    val=-1
+    while t<tmax:
         fire=False
         inte=0
         while fire==False:
-            inte += s[i]*dt
-            t += t+dt
+            val += 1
+            
+            if val>len(s)-1:
+                break
+            
+            inte += s[val]*dt
+            t += dt
+            
+            
             if inte >= theta:
                 Ti.append(t)
                 fire=True
                 
     ti=[(Ti[i+1]-Ti[i]) for i in range(len(Ti)-1)]
-    
-    
+    return ti
+
 def signal(x):
     s=[(i+2)**2 for i in x]
     return s
@@ -32,4 +40,8 @@ def read_x(equation='lorentz',initial_time=0.0,last_time=50.0,dt=0.001):
             y.append(float(value[1]))
             z.append(float(value[2]))
     return x,y,z
-    
+
+x,y,z=read_x()
+s=signal(x)
+ti=extract_spikes(s,20,0.001,50)
+
