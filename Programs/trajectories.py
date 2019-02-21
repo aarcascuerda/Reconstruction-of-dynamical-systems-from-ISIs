@@ -18,7 +18,7 @@ class TrajectoryCalcul:
     function_def = "lorentz"
     time_interval_def = [0., 50.]
     initial_conditions_def = [-10., -10., -10.]
-    dt_def = 0.001
+    dt_def = 0.0001
 
     def __init__(
         self, function=None, time_interval=None, initial_conditions=None, dt=None
@@ -48,6 +48,9 @@ class TrajectoryWriter:
         self.y = self.solution
         self.file_name = str(self.traj.time_interval[0])+'_'+str(self.traj.time_interval[1])+'_'+str(self.traj.dt)
 
-    with open('data/{}/{}.dat'.format(dir_name,file_name), 'w') as file_obj:
-        for i in range(len(y)):
-            file_obj.write('{} {} {}\n'.format(y[i][0],y[i][1],y[i][2]))
+    def writer(self):
+        with open('data/{}/{}.dat'.format(self.dir_name,self.file_name), 'w') as file_obj:
+            for i in range(len(self.y)):
+                file_obj.write('{} {} {}\n'.format(self.y[i][0],self.y[i][1],self.y[i][2]))
+
+TrajectoryWriter().writer()
