@@ -11,14 +11,23 @@ class Functions:
         y = x_ini[1]
         z = x_ini[2]
         return [sigma * (y - x), x * (rho - z) - y, x * y - beta * z]
+    
+    def rossler(x_ini,t0,a=0.1,b=0.1,c=14):
+        x = x_ini[0]
+        y = x_ini[1]
+        z = x_ini[2]
+        return [-(y + z), x + a * y, b + z * ( x - c )]
 
 
 class TrajectoryCalcul:
 
-    function_def = "lorentz"
-    time_interval_def = [0., 50.]
+    function_def = 'lorentz'
+    #function_def = 'rossler'
+    time_interval_def = [0., 2000.]
+    #time_interval_def = [0., 200.]
     initial_conditions_def = [-10., -10., -10.]
-    dt_def = 0.0001
+    #dt_def = 0.0001
+    dt_def = 0.001
 
     def __init__(
         self, function=None, time_interval=None, initial_conditions=None, dt=None
