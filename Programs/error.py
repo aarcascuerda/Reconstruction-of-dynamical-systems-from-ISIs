@@ -1,7 +1,6 @@
 import numpy as np 
 from scipy.spatial import distance
 
-@nb.njit
 def knn(vector_list, index, pc_clossest=1., pc_close_del=0.1):
     """vector_list must be of the type np.array([V0,V1,...,Vk]) with Vi = [ti,ti-1,ti-2]"""
     N = len(vector_list)
@@ -24,7 +23,7 @@ def neirest_pred(vector_list, index):
 
 
 def npe(vector_list):
-    m = np.mean(vector_list, axis=0)[2]
+    m = np.sum(np.mean(vector_list, axis=0))/3.
     N = len(vector_list)
     num = 0.0
     denom = 0.0
