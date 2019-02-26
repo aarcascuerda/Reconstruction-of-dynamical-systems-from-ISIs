@@ -1,5 +1,4 @@
 import numpy as np 
-import numba as nb 
 
 def gs_ran(vector_list):
     N = len(vector_list)
