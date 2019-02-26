@@ -8,7 +8,7 @@ def extract_spikes(s,theta,t0,tmax,dt):
     val=-1
     while t<tmax-dt:
         fire=False
-        inte=0
+        inte=0.
         while fire==False:
             val += 1
             

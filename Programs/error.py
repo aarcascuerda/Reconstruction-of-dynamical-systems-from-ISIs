@@ -33,6 +33,4 @@ def npe(vector_list):
         denom += (m - t_real)**2.
     return np.sqrt(num/denom)
 
-    
-
 
