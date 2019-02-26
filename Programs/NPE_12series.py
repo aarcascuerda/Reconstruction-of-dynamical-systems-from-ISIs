@@ -16,7 +16,7 @@ def read_incs(theta,tmax,dt,equation='lorentz'):
 #parameters for spikes intervals
 t0=0.
 tmax=2000.
-dt=0.001
+dt=0.0001
 
 npes=[]
 thetas=[]
@@ -27,8 +27,10 @@ incremento=(theta_f-theta_i)/11.
 for i in range(12):
     theta=theta_i+i*incremento
     vector=np.array(read_incs(theta,tmax,dt,equation='lorentz'))
-    print("%i/%i"%(i,12))
-    npes.append(npe(vector))
+    print("%i, theta=%.2f"%(i,theta))
+    val=npe(vector)
+    print("NPE=%.4f"%val)
+    npes.append(val)
     thetas.append(theta)
 
 plt.figure(1)

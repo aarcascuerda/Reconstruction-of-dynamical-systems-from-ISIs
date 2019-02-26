@@ -27,7 +27,7 @@ class TrajectoryCalcul:
     #time_interval_def = [0., 200.]
     initial_conditions_def = [-10., -10., -10.]
     #dt_def = 0.0001
-    dt_def = 0.001
+    dt_def = 0.0001
 
     def __init__(
         self, function=None, time_interval=None, initial_conditions=None, dt=None
