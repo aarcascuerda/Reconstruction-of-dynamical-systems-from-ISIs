@@ -2,12 +2,8 @@ import numpy as np
 from scipy.spatial import distance
 import numba as nb
 
-<<<<<<< HEAD
 
 def knn(vector_list, index, pc_clossest=1.0, pc_close_del=0.5):
-=======
-def knn(vector_list, index, pc_clossest=1., pc_close_del=0.5):
->>>>>>> a615bd7c498424aa16dd017b83276bf3497c3bad
     """vector_list must be of the type np.array([V0,V1,...,Vk]) with Vi = [ti,ti-1,ti-2]"""
     N = len(vector_list)
     n_del, n_close = int(N * pc_close_del / (2.0 * 100.0)), int(N * pc_clossest / 100.0)
@@ -49,13 +45,8 @@ def neirest_pred(vector_list, index):
         if close_index[i] == len(vector_list) - 1:
             pred += vector_list[close_index[i] - 1][2]
         else:
-<<<<<<< HEAD
             pred += vector_list[close_index[i] + 1][2]
     return pred / k
-=======
-            pred += vector_list[close_index[i]+1][2]
-    return pred/k
->>>>>>> a615bd7c498424aa16dd017b83276bf3497c3bad
 
 
 def npe(vector_list):
