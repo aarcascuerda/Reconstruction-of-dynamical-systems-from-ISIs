@@ -45,13 +45,23 @@ def read_x(t0,tmax,dt,equation='lorentz'):
             z.append(float(value[2]))
     return x,y,z
 
-def writer_spikes(ti,equation='lorentz'):
-    file_name=str(theta)+'_'+str(tmax)+'_'+str(dt)
+def writer_spikes(ti,theta,t0,tmax,dt,equation='lorentz'):
+    file_name=str(theta)+'_'+str(t0)+'_'+str(tmax)+'_'+str(dt)
     with open('data/{}/times/{}.dat'.format(equation,file_name), 'w') as file_obj:
         for i in range(len(ti)):
             file_obj.write('{}\n'.format(ti[i]))
         
-            
+def read_spikes(theta,t0,tmax,dt,equation='lorentz'):
+    vector=[]
+    file_name=str(theta)+'_'+str(t0)+'_'+str(tmax)+'_'+str(dt)
+
+    with open('data/{}/times/{}.dat'.format(equation,file_name), 'r') as f:
+        for linea in f:
+            value = linea.split(" ")
+            value[0].split("/n")
+            vector.append(float(value[0]))
+    return vector
+
 def writer_spikes_space(ti,theta,t0,tmax,dt,equation='lorentz'):
     file_name=str(theta)+'_'+str(t0)+'_'+str(tmax)+'_'+str(dt)
     
@@ -62,6 +72,17 @@ def writer_spikes_space(ti,theta,t0,tmax,dt,equation='lorentz'):
     with open('data/{}/time_space/12series/{}.dat'.format(equation,file_name), 'w') as file_obj:
         for i in range(len(x)):
             file_obj.write('{} {} {}\n'.format(x[i],y[i],z[i]))
+
+def read_space(theta,t0,tmax,dt,equation='lorentz'):
+    vector=[]
+    file_name=str(theta)+'_'+str(t0)+'_'+str(tmax)+'_'+str(dt)
+
+    with open('data/{}/time_space/12series/{}.dat'.format(equation,file_name), 'r') as f:
+        for linea in f:
+            value = linea.split(" ")
+            value[2].split("/n")
+            vector.append([float(value[0]),float(value[1]),float(value[2])])
+    return vector
 
 """
 #parameters for spikes intervals

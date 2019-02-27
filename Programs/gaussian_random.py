@@ -6,8 +6,9 @@ def gs_ran(vector_list):
     k = 0
     while k < N:
         rand = int(np.random.normal(k,N))
-        if rand > -1 and rand < 100 and nvl[rand][0] < 0.:
+        #print(rand)
+        if rand > -k-1 and rand < N-k and nvl[rand][0] < 0.:
             nvl[rand] = vector_list[k]
             k += 1
-            print(k)
+            #print(k)
     return nvl

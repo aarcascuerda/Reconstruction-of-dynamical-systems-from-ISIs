@@ -46,6 +46,54 @@ And from this, the inter-spike intervals are defined as $t_i = T_i - T_{i-1}$. T
 There are several points that seems to have a lack of purpose or explanation in the paper. They seem to take specific signals, apparently arbitrary, although they specify it is obviously needed positive signals in order to have spike events. They just reconstruct the Rossler attractor (they also write wrong the equations of this dynamical system), and give no explanation on why the Lorentz one its not observable from the spike interval time. They also fix the embedding dimension $m=3$, giving little explanation So we had the feeling that most of the calculations and parameters are taken to confirm the results; although they claim at the beginning of the paper that their goal is to develop a model which is as generic as possible, their choices are not well justified, and there are some points that can not be fully understood by simply following the paper even the references. Nevertheless, it shows interesting results that seem to have important implications and we were able to reproduce its most important results with the parameters given by them.
 
 \section{Results}
+Now we present all the results we reproduced from the papers reviewed above. We basically analyse the Rossler and Lorentz systems.\\
+First, we reconstruct a finite-dimensional phase-space picture of the sampled system's time evolution, corresponding to the Rossler equations.
+
+\begin{center}
+\includegraphics[scale=0.5]{rossler_xprima}
+\caption{Reconstruction $(x,\dot x)$ from the time series for the Rossler attractor}
+\label{fig:rossler_xprima}
+\end{center}
+
+Then we focus on the interspike intervals. First of all, we create trajectories of the Rossler dynamics. Using this trajectories, we put the signal $S(x)=x(t)+40$ and threshold $\Theta=20$, so we obtain the ISI time series, and then the can define the interspike intervals.
+
+\begin{center}
+\includegraphics[scale=0.5]{real_trajectory_rossler} \includegraphics[scale=0.5]{reconstructed_trajectory_rossler}
+\caption{Deterministic trajectory from equations described above (left) for the Rossler system and an ISI series generated from this.}
+\label{fig:rossler_xprima}
+\end{center}
+
+Then we can create the vectors $(t_i,t_{i+1},t_{i+2})$. This allows us to reconstruct again the phase portrait for the Rossler attractor by connecting vectors.
+
+\begin{center}
+\includegraphics[scale=0.5]{rossler_atractor_400points}
+\caption{Reconstructed phase portrait for the Rossler attractor using ISI's with $400$ points.}
+\label{fig:rossler_isi}
+\end{center}
+
+We can do the same analysis for the Lorentz equations. Although the geometry in the phase portrait is not conserved, here the form of the attractor obtained is not particularly interesting. Nevertheless, the analysis are still valid and we proceed to use the information stored in the ISI series to unveil the topollogy of the dynamical system.
+
+\begin{center}
+\includegraphics[scale=0.5]{real_trajectory_lorentz}
+\caption{Deterministic trajectory from equations described above for the Lorentz system.}
+\label{fig:lorentz_trajectory}
+\end{center}
+
+We use the signal $S(t)=(x(t)+2)^2$ and different thresholds to do the analysis of the prediction error algorithm described in the section of the paper \cite{interspike}. So we basically apply the nonlinear prediction algorithm to interspike intervals for the Lorentz system. Then we create surrogate data \cite{surrogate}, specifically we use the Gaussian-scaled shuffle (GS) surrogate, which is a random shufHe of the original series subject to retaining much of the serial correlation. The GS surrogate corresponds to the null hypothesis that the series is a monotonically scaled version of amplitudes produced by a Gaussian random process. We fix the embedding dimension $m=3$ and predicted one step ahead $(h=1)$, for increasing thresholds $\Theta$, in order to see that the predictability of the series decrease, and tends to disappear as the threshold is big enough.
+
+\begin{center}
+\includegraphics[scale=0.5]{NPE_12series}
+\caption{Normalized one step ahead prediction error for several ISI series with varying $\Theta$, for the original ISI series and the GS surrogate.}
+\label{fig:12series}
+\end{center}
+
+We also show the comparison for the ISI lenght density distribution obtained on this cases for both series (original and surrogate)
+
+\begin{center}
+%\includegraphics[scale=0.5]{ISIdistribution} \includegraphics[scale=0.5]{GSdistribution}
+\caption{.}
+\label{fig:distributions}
+\end{center}
 
 \section{Conclusions}
 

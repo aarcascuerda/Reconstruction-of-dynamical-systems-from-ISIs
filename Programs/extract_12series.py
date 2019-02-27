@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from spike_intervals import extract_spikes,signal,read_x,writer_spikes_space
+from spike_intervals import extract_spikes,signal,read_x,writer_spikes,writer_spikes_space
 
 
 #parameters for spikes intervals
@@ -28,4 +28,5 @@ for i in range(12):
     theta=theta_i+i*incremento
     ti=extract_spikes(s,theta,t0,tmax,dt)
     print("%i, theta=%.2f"%(i,theta))
+    writer_spikes(ti,theta,t0,tmax,dt)
     writer_spikes_space(ti,theta,t0,tmax,dt)
