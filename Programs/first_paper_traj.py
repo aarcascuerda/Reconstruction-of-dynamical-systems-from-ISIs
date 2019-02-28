@@ -72,3 +72,10 @@ class TrajectoryWriter:
         with open('data/first_paper/{}/{}_2.dat'.format(self.dir_name,self.file_name), 'w') as file_obj:
             for i in range(len(self.y)-100):
                 file_obj.write('{} {}\n'.format(self.y[i][0],self.y[i+100][0]))
+
+    def var(self):
+        return np.array([[self.y[i][0],self.y_prima[i]] for i in range(len(self.y))])
+    
+    def var2(self):
+        return np.array([[self.y[i][0],self.y[i+100][0]] for i in range(len(self.y)-100)])
+
