@@ -37,26 +37,26 @@ def check_loop(v0_closest, b, n_del):
     return v0_closest
 
 
-def neirest_pred(vector_list, index):
+def neirest_pred(vector_list, index, h):
     close_index = knn(vector_list, index)
     k = len(close_index)
     pred = 0.0
     for i in range(k):
-        if close_index[i] == len(vector_list) - 1:
-            pred += vector_list[close_index[i] - 1][2]
+        if close_index[i] >= len(vector_list) - h:
+            pred += vector_list[close_index[i] - h][2]
         else:
-            pred += vector_list[close_index[i] + 1][2]
+            pred += vector_list[close_index[i] + h][2]
     return pred / k
 
 
-def npe(vector_list):
+def npe(vector_list, h=1):
     m = np.sum(np.mean(vector_list, axis=0)) / 3.0
     N = len(vector_list)
     num = 0.0
     denom = 0.0
-    for i in range(N - 1):
-        t_real = vector_list[i + 1][2]
-        num += (neirest_pred(vector_list, i) - t_real) ** 2.0
+    for i in range(N - h):
+        t_real = vector_list[i + h][2]
+        num += (neirest_pred(vector_list, i, h) - t_real) ** 2.0
         denom += (m - t_real) ** 2.0
     return np.sqrt(num / denom)
 
