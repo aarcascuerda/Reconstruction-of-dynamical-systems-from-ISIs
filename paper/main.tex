@@ -64,9 +64,9 @@ There are several points that seems to have a lack of purpose or explanation in 
 
 \section{Results}
 
-Now we present all the results we reproduced from the papers reviewed above. We basically analyse the Rossler and Lorentz systems.
+Now we present all the results we reproduced from the papers reviewed above. We basically analyse and compute characteristics of the Rossler and Lorentz systems using the new techniques that both papers gave at their time.
 
-First, we reconstruct a finite-dimensional phase-space picture of the sampled system's time evolution, corresponding to the Rossler equations where we've reconstructed the system using the variable systems they propose in \cite{paper1}. Apart from that, we didn't go further on with reproducing the results of this paper as we thought second one was more interesting and we didn't really agree with the other results in \cite{paper1}. The reconstructions are shown in Figure 1.
+First, we reconstruct a finite-dimensional phase-space picture of the sampled system's time evolution, corresponding to the Rossler equations. We've reconstructed the system using the variable systems they propose in \cite{paper1}. Apart from that, we didn't go further on with reproducing the results of this paper as we thought second one was more interesting and we didn't really agree with the other results in \cite{paper1}. The reconstructions are shown in Figure 1, where one can appreciate how although computed in $2d$, the systems seem just a perspective of a $3d$ system. That is of course consequence of our description with two variables.
 
 \begin{figure}[h!]
 \centering
@@ -76,7 +76,7 @@ First, we reconstruct a finite-dimensional phase-space picture of the sampled sy
 \caption{Reconstruction $(x,\dot x)$ left and $\left(x(t),x(t-\tau)\right)$ right from the time series for the Rossler attractor.}
 \end{figure}
 
-Then we focus on the interspike intervals as \cite{interspike} does. First of all, we create trajectories of the Rossler dynamics in the time interval they propose. Using this trajectories, we use the signal $S(x)=x(t)+40$ and threshold $\Theta=20$ to obtain the ISI time series, then we can obtain the interspike intervals, $(t_0,t_1,...,t_N)$.
+Then we focus on the interspike intervals as \cite{interspike} does. First of all, we create trajectories of the Rossler dynamics in the time interval they propose. Then, using those trajectories, the signal $S(x)=x(t)+40$ and threshold $\Theta=20$ to obtain the ISI time series. Finally, we can obtain the interspike intervals, $(t_0,t_1,...,t_N)$.
 
 \begin{figure}[h!]
 \centering
@@ -85,7 +85,7 @@ Then we focus on the interspike intervals as \cite{interspike} does. First of al
 \label{fig:rossler_xprima}
 \end{figure}
 
-From the interspike intervals we define the vectors $(t_i,t_{i+1},t_{i+2})$. This allows us to reconstruct again the phase portrait for the Rossler in $3d$ attractor by connecting the new defined vectors. Note that for all the reconstructions, the only granted preserved feature is the topology, so it's expected for other features such as the scale to be modified.
+From the interspike intervals we define the vectors $(t_i,t_{i+1},t_{i+2})$. This allows us to reconstruct again the phase portrait for the Rossler in $3d$ attractor by connecting the new defined vectors. Note that for all the reconstructions, the only granted preserved feature is the topology, so it's expected for other features such as the scale to be modified. Anyway, if we look at Figure 3, we can appreaciate that some information is preserved as the figure is similar the Rossler attractor and not like any random figure.
 
 \begin{figure}[h!]
 \centering
@@ -103,16 +103,18 @@ We can do the same analysis for the Lorentz equations. Although the geometry in 
 \label{fig:lorentz_trajectory}
 \end{figure}
 
-We use the signal $S(t)=(x(t)+2)^2$ and different thresholds used in \cite{interspike} to do the analysis of the prediction error algorithm described in the paper. So we basically apply the nonlinear prediction algorithm to the interspike interval vectors obtained for the Lorentz system. Then, we create surrogate data \cite{surrogate}, specifically we use the Gaussian-scaled shuffle (GS) surrogate, which is a random shuffle of the original series subject to retaining much of the serial correlation. The GS surrogate corresponds to the null hypothesis that the series is a monotonically scaled version of amplitudes produced by a Gaussian random process. We fix the embedding dimension $m=3$ and predicted one step ahead $(h=1)$, for increasing thresholds $\Theta$, in order to see that the predictability of the series decrease, and tends to disappear as the threshold is big enough.
+We use the signal $S(t)=(x(t)+2)^2$ and different thresholds used in \cite{interspike} to do the analysis of the prediction error algorithm described in the paper. We basically compare to different methods to predict the expected value for the next time, one of the methods is a k-nearest neighbour and the other is just and averate. As we know that the k-nearest neighbour performs better, we expect for a non-random distribution to have less error in the k-nearest neighbour algorithm than in the average (in fact, it can be proved that for random distributions the average value would perform better). We use this idea of comparing \textit{effectiveness} of algorithms in order to show that we do preserve the information in the process described in the previous sections. 
+
+Then, to be able to compare the results and test our idea of algorithm \textit{effectiveness}  we create surrogate data \cite{surrogate} and plotted with the non-shuffled one in Figure 5. We use the Gaussian-scaled shuffle (GS) surrogate, which is a random shuffle of the original series to preserve the amplitud of the noise but to eliminate any possible temporal correlation more than the one of GS. The GS surrogate corresponds to the null hypothesis that the series is a monotonically scaled version of amplitudes produced by a Gaussian random process. We fix the embedding dimension $m=3$ and predicted one step ahead $(h=1)$, for increasing thresholds $\Theta$, in order to see that the predictability of the series decrease, and tends to disappear as the threshold is big enough.
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.5]{NPE_12series}
+\includegraphics[scale=0.5]{NPE_12series_copy}
 \caption{Normalized one step ahead prediction error for several ISI series with varying $\Theta$, for the original ISI series and the GS surrogate.}
 \label{fig:12series}
 \end{figure}
 
-We also show the comparison for the ISI lenght density distribution obtained on this cases for both series (original and surrogate)
+Finally, as a last result, we reproduce the figure in which they change the step of predictability in order to see how \textit{far} the limit of predictability is and more important to see that there's one in fact, if there wasn't we would be doing something really wrong. We do the plot in Figure 6 where we can clearly appreciate that as we increase the number of steps ahead in time the predictability becomes smaller and smaller until a point that there's none unconditioned of the algorithm using. So yes, we can predict in some advance but it doesn't take long for chaos to strike back.
 
 \begin{figure}[h!]
 \centering
