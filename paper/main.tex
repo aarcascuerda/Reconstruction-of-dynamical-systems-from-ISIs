@@ -48,7 +48,7 @@ The paper \cite{interspike} tries to pose the following question: being a point 
 
 On the other hand, they rely on the fact that states of finite dimensional dynamical systems correspond in a one-to-one manner with delay-coordinate vectors, which are vectors of time series measurements of a generic system observable. System analysis of this type is suggested in and an embedding theorem due to Takens established its validity. This has great consequences and applications, because we can analyse topology and even geometry of the chaotic attractor. The applications can be noise filtering, prediction of chaotic time series.
 
-Takens' theorem \cite{takens} is a delay embedding theorem, i.e it gives the conditions under which a chaotic dynamical system can be reconstructed from a sequence of observations of the state of the system. The important point is that the reconstruction preserves the properties of the system that do not change under smooth coordinate changes. Nonetheless, it does not preserve the geometric shape of structures in phase space. The theorem basically states that the strange attractor can be embedded in $k-$ dimensional Euclidean space with $k>2d_A$, being $d_A$ the box counting dimension $d_A$.
+Takens' theorem \cite{takens} is a delay embedding theorem, i.e it gives the conditions under which a chaotic dynamical system can be reconstructed from a sequence of observations of the state of the system. The important point is that the reconstruction preserves the properties of the system that do not change under smooth coordinate changes. Nonetheless, it does not preserve the geometric shape of structures in phase space. The theorem basically states that the strange attractor can be embedded in $k-$ dimensional Euclidean space with $k>2d_A$, being $d_A$ the box counting dimension $d_A$. It is an upper constrain for the dimension needed, but we still can find our dimension to be lower than this, as we see in the Rossler system, we need to take ISI series of dimension 3.
 
 Thus the paper, relying the Takens' theorem, analyse the previous question for inter-spike interval (ISI) data, assuming a generic integrate-and-fire model coupling deterministic dynamical systems to a spike train, so that there is assumed that there is a one-to-one correspondence between the states of the system and the inter-spike interval vectors of sufficiently large dimension. 
 
@@ -114,7 +114,7 @@ Then, to be able to compare the results and test our idea of algorithm \textit{e
 \label{fig:12series}
 \end{figure}
 
-Finally, as a last result, we reproduce the figure in which they change the step of predictability in order to see how \textit{far} the limit of predictability is and more important to see that there's one in fact, if there wasn't we would be doing something really wrong. We do plot in Figure 6 the predictability for different time advances where we can clearly appreciate that as we increase the number of steps ahead in time the predictability becomes smaller and smaller until a point that there's none unconditioned of the algorithm using. So yes, we can predict in some advance but it doesn't take long for chaos to strike back.
+Finally, as a last result, we reproduce the figure in which they change the step of predictability in order to see how \textit{far} the limit of predictability is and more important to see that there's one in fact, if there wasn't we would be doing something really wrong. We do plot in Figure 6 the predictability for different time advances where we can clearly appreciate that as we increase the number of steps ahead in time the predictability becomes smaller and smaller until a point that there's none unconditioned of the algorithm using. So yes, we can predict in some advance but it doesn't take long for chaos to strike back. This is due to the Liapunov time, or the Liapunov exponent, that tells us when nearby trajectories will diverge thus constrining our limit of predictability
 
 \begin{figure}[h!]
 \centering
@@ -124,6 +124,7 @@ Finally, as a last result, we reproduce the figure in which they change the step
 \end{figure}
 
 \section{Conclusions}
+Although confusing at first glance as the principal ideas are counter intuitive, we found here an interesting application to time series. We consider, nevertheless, that there is a lack of mathematical fundament in both papers, although the second one relies explicitly on Takens's theorem, it seems to need some general analysis. We realize how powerful this procedures explained above can be, since with little information of a dyamical system we can extract the main characteristics, reconstructing some shape of the attractor of the underlying system, establish wheter it is deterministic or stochastic, with a prediction algorithm, and even to make predictions of the future evolution, with different step-ahead. We succeeded in obtaining the main results, such that we acquired a good understanding of these topics.
 
 \begin{thebibliography}{99}
  
